@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 class Interest(models.Model):
     name = models.CharField(max_length=20, primary_key=True)
 
+class School(models.Model):
+    name = models.CharField(max_length=40, primary_key=True, default="None")
 
 # Extend the User class to include relation with Interests
 # Only the interests field requires a lookup of the ExtUser,
@@ -13,6 +15,7 @@ class Interest(models.Model):
 class ExtUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     interests = models.ManyToManyField(Interest)
+    school = models.OneToOneField(School, null=True)
 
 
 # Model for an event entity

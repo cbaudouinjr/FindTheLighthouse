@@ -10,7 +10,7 @@
         .container-center-panel{
             padding-left: 150px;
             padding-right: 150px;
-            padding-top: 50px;
+            padding-top: 100px;
         }
         .container-panel-buttons{
             alignment: center;
@@ -29,12 +29,12 @@
     </style>
 </head>
 <body>
-{% if logged_in %}
+{% if user.is_authenticated %}
     <div class="navbar-form navbar-right">
 
         <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-                {{ username }}
+                {{ user.get_username }}
                 <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
@@ -46,9 +46,10 @@
         </div>
     </div>
 {% else %}
-    <button type="button" class="btn btn-default" aria-label="Left Align">
-        Login
-    </button>
+    <div class="navbar-form navbar-right">
+        <a href="#" style="padding-right: 20px">Login</a>
+        <a href="#" style="padding-right: 20px">Register</a>
+    </div>
 {% endif %}
 <div class="container-center-panel">
     <div class="input-group">
