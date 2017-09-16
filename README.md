@@ -2,9 +2,7 @@
 A website to help find your community
 
 
-==============================
-|********Known Issues********|
-==============================
+<h1>Known Issues</h1>
 The following are a list of known bugs or issues that will be
 addressed in future versions of the product.
 
