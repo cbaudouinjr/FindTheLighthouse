@@ -12,8 +12,9 @@ def profile(request, username):
 
 
 # View for a User's preferences (NOT editing)
-def preferences(request, userid):
-    target = ExtUser.objects.get(user=userid)
+def preferences(request, username):
+    user = User.objects.get(username=username)
+    target = ExtUser.objects.get(user=user)
     return render(request, 'preferences.html')
 
 
