@@ -18,7 +18,14 @@ from django.contrib import admin
 from FindTheLighthouse.views import *
 
 urlpatterns = [
+    # Main landing page for site
     url(r'^$', index, name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('accounts.urls')),
+
+    # Page dedicated to finding people
+    url(r'^people', people, name='people'),
+
+    # Page dedicated to finding events
+    url(r'^meetup', meetup, name='meetup'),
 ]
