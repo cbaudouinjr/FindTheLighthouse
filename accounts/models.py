@@ -2,6 +2,11 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
+# Interest class used for tagging (by Users and Events)
+class Interest(models.Model):
+    name = models.CharField(max_length=20, primary_key=True)
+
+
 # Extend the User class to include relation with Interests
 # *** Access this class via AUTH_USER_MODEL in settings.py ***
 class User(AbstractUser):
@@ -21,8 +26,3 @@ class Event(models.Model):
 class Attendee(models.Model):
     user = models.OneToOneField(User)
     event = models.OneToOneField(Event)
-
-
-# Interest class used for tagging (by Users and Events)
-class Interest(models.Model):
-    name = models.CharField(max_length=20, primary_key=True)
