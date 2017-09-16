@@ -1,0 +1,58 @@
+This document is a basic outline of the product description for The Lighthouse.
+It will be used in the creation of the Conceptual and Logical models, as well as to
+work out any kinks still present in the data-organization side of the product.
+
+Please mark any changes in this document with a version change number and date below:
+
+*****************************
+Version: 1.0 9/16/17 12:16 AM
+*****************************
+
+Referred to in this document as "The Lighthouse", FindTheLighthouse is a web-based
+platform for students at colleges (currently Rochester Institute of Technology, but
+built for expansion to any university campus in the future) who are having trouble
+finding friends on campus or events to go to that are relevant to their interests.
+
+Although the site is primarily unmoderated, Django administrative powers fall on
+the creators of the platform (Trevor Seiders and Chris Baudouin for the RIT branch)
+to use as necessary. This could include, but is not limited to, removing broken
+posts or those deemed inappropriate for the platform, and editing posts to include
+new or altered information. No implementation of any special User account exists
+at this time other than the Django Admin standard user.
+
+The Lighthouse is broken into two primary functionalities: connecting Users to other
+Users, and connecting Users to Events.
+
+A User is identified by their email address used to register for the site. Additional
+information stored includes the first and last names of the User, a username for display
+on the public side of the site, and a collection of "tagged" interests.
+
+An Event is identified by a unique id created at the time of event listing (creation).
+Events have a title (name), a description, a start time, an end time, and a list of
+featured "tags", keywords that will link to the Event when searched. An Event also has
+one or more hosts, indicated by a relation with a User.
+
+Tags are used for indexing Users and Events that share those same tags. Current model
+dictates that Users input their own interests when creating or editing their profile,
+leading to the potential issue of multiple Users logging the same interest with slightly
+different inputs. This is potentially solvable with a display of common or recent tags,
+so that a User can see examples, or with an autofill feature so that a User can see if
+their tag already exists in the database.
+
+Connecting a User to a User is simple: when on the "Connect with People (Working Title)"
+page, the Users with the most interests in common with the logged-in User are displayed
+below the search bar in groups of ten per 'page'. The logged-in User can click on any of
+these profiles to see more information (clicked User's "Profile Page"), or use the search
+bar to find Users with specific tagged interests.
+
+Connecting a User to an Event is a similar process. When on the "Meetups (Working Title)"
+page, the Events that have similar interests to the User are presented below the search
+bar and above the other Events. Other events are sorted in order of start time and limited
+to ten per 'page'. By default no event is shown that has a start time after midnight of the
+current day. This can be changed by clicking on the "Show All Upcoming Meetups" button.
+
+Lastly, the home page combines these two functionalities. Below a total database search
+that can include a username, an Event name, or a tag / series of tags, two buttons bring
+the User to either of the aforementioned pages: Find Your People and Find Your Meetups (WT).
+Below that is a Happening Now section that lists, in alternating pattern, the five most
+recently created User accounts and Events.
