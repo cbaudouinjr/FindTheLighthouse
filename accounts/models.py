@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 
 
 # Interest class used for tagging (by Users and Events)
@@ -8,8 +8,10 @@ class Interest(models.Model):
 
 
 # Extend the User class to include relation with Interests
-# *** Access this class via AUTH_USER_MODEL in settings.py ***
-class User(AbstractUser):
+# Only the interests field requires a lookup of the ExtUser,
+# everything else can be handled
+class ExtUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     interests = models.ManyToManyField(Interest)
 
 
@@ -24,5 +26,5 @@ class Event(models.Model):
 
 # Create a separated table for searching for attendees of events
 class Attendee(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(ExtUser)
     event = models.OneToOneField(Event)

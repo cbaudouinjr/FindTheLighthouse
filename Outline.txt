@@ -5,7 +5,7 @@ work out any kinks still present in the data-organization side of the product.
 Please mark any changes in this document with a version change number and date below:
 
 *****************************
-Version: 1.1 9/16/17 03:18 AM
+Version: 1.2 9/16/17 11:02 AM
 *****************************
 
 Referred to in this document as "The Lighthouse", FindTheLighthouse is a web-based
@@ -65,11 +65,12 @@ The following section discusses the reasoning driving the design of the implemen
 of the entities involved in The Lighthouse product.
 
 
-USER: The default Django User class has been extended (from its Abstract form) in order
-to provide additional functionality. Namely, a ManyToMany relation has been added to
-connect a User with their chosen Interests (covered below). Access to the User class
-must now be achieved through the importation of settings.py and accessing the defined
-field "AUTH_USER_MODEL".
+USER: The default Django User class is almost perfect, but we needed to add in the
+ManyToMany relation with the Interest model. As a result we have established a new
+User class with a OneToOne relationship with the base User class. Originally it was
+intended that the AbstractUser would be extended to use a modified version of the
+Django User, but the speed concerns have been outweighed by the sheer complexity
+of that type of override.
 
 EVENT: As Django creates an artificial id Primary Key by default on every model if one
 is not explicitly set, no id field was created for an Event. The title of an event was
