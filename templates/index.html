@@ -41,13 +41,13 @@
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Profile</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Preferences</a></li>
                 <li role="separator" class="divider"></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Logout</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url "logout" %}">Logout</a></li>
             </ul>
         </div>
     </div>
 {% else %}
     <div class="navbar-form navbar-right">
-        <a href="#" style="padding-right: 20px">Login</a>
+        <a href="{% url "login_page" %}" style="padding-right: 20px">Login</a>
         <a href="#" style="padding-right: 20px">Register</a>
     </div>
 {% endif %}
@@ -78,10 +78,28 @@
             <div class="panel-formatting">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">J.P. Morgan</h3>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h3 class="panel-title"><a href="#">Kenn House</a></h3>
+                            </div>
+                            <div class="col-sm-6" align="right">
+                                <a href="#"><i class="glyphicon glyphicon-envelope"></i></a>
+                            </div>
+                        </div>
                     </div>
                     <div class="panel-body">
-                        Likes soccer
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h5>Interests</h5>
+                                <li>Pizza</li>
+                                <li>Meetings</li>
+                                <li>Back Buttons</li>
+                            </div>
+                            <div class="col-sm-6">
+                                <h5>Clubs</h5>
+                                <li>Cuddy's Club</li>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,7 +111,22 @@
                         <h3 class="panel-title">Pick Up Soccer Game</h3>
                     </div>
                     <div class="panel-body">
-                        Field behind Grace Watson
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h5>Location</h5>
+                                <li>Grace Watson Field</li>
+                            </div>
+                            <div class="col-sm-4">
+                                <h5>Interests</h5>
+                                <li>Sports</li>
+                                <li>Soccer</li>
+                            </div>
+                            <div class="col-sm-4">
+                                <h5>Who's there</h5>
+                                <li>Kenn House</li>
+                                <li>John Appleseed</li>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

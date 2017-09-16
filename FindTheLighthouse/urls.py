@@ -28,4 +28,10 @@ urlpatterns = [
 
     # Page dedicated to finding events
     url(r'^meetup', meetup, name='meetup'),
+
+    # Link for logout process
+    url(r'^logout', logout_user, name='logout'),
+
+    # Page dedicated to logging in
+    url(r'^login', login_page, name='login_page'),
 ]
