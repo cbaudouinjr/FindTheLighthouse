@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta charset="UTF-8">
     <title>Find the Lighthouse</title>
     <style>
@@ -18,13 +19,27 @@
         .title-button{
             width: 110px;
         }
-        .card-formatting{
-            padding-left: 50px;
-            padding-right: 50px;
+        .panel-formatting{
+            padding-top: 30px;
         }
     </style>
 </head>
 <body>
+{% if logged_in %}
+    <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">{{ username }}
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Profile</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Preferences</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Logout</a></li>
+    </ul>
+  </div>
+{% else %}
+    <button type="button" class="btn btn-default" aria-label="Left Align">
+        Login
+    </button>
+{% endif %}
 <div class="container-center-panel">
     <div class="input-group">
         <input type="text" class="form-control" placeholder="username, meetup, interest..." aria-describedby="basic-addon2">
@@ -33,11 +48,54 @@
         </span>
     </div>
     <div class="container-panel-buttons text-center">
-        <button type="button" class="btn btn-default btn-lg title-button">Find Your People</button>
-        <button type="button" class="btn btn-default btn-lg title-button">Meetups</button>
+        <a href="{% url "meetup" %}"><button id="meetups" type="button" class="btn btn-default btn-lg title-button">Meetups</button></a>
+        <a href="{% url "people" %}"><button id="people" type="button" class="btn btn-default btn-lg title-button">People</button></a>
     </div>
-
 </div>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h4 align="center">Happening Now</h4>
+        </div>
+        <div class="col-sm-6">
+            <h4 align="center">Who's New</h4>
+        </div>
+    </div>
+</div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="panel-formatting">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Meetup</h3>
+                                </div>
+                                <div class="panel-body">
+                                    We're playing soccer
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="panel-formatting">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Meetup</h3>
+                                </div>
+                                <div class="panel-body">
+                                    We're playing soccer
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
