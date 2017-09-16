@@ -10,7 +10,7 @@
         .container-center-panel{
             padding-left: 150px;
             padding-right: 150px;
-            padding-top: 100px;
+            padding-top: 50px;
         }
         .panel-formatting{
             padding-top: 30px;
@@ -28,30 +28,36 @@
     </style>
 </head>
 <body>
-    <div class="back-btn">
-        <a href="{% url "people" %}"><button id="people" type="button" class="btn btn-default btn-md title-button">Back</button></a>
-    </div>
-    {% if user.is_authenticated %}
-    <div class="navbar-form navbar-right">
-        <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-                {{ user.get_username }}
-                <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Profile</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Preferences</a></li>
-                <li role="separator" class="divider"></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Logout</a></li>
-            </ul>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="back-btn">
+                <a href="{% url "index" %}"><button id="people_home" type="button" class="btn btn-default btn-md title-button"><i class="glyphicon glyphicon-chevron-left"></i>Home</button></a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            {% if user.is_authenticated %}
+                <div class="navbar-form navbar-right">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+                            {{ user.get_username }}
+                            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Profile</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Preferences</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            {% else %}
+                <div class="navbar-form navbar-right">
+                    <a href="#" style="padding-right: 20px">Login</a>
+                    <a href="#" style="padding-right: 20px">Register</a>
+                </div>
+            {% endif %}
         </div>
     </div>
-{% else %}
-    <div class="navbar-form navbar-right">
-        <a href="#" style="padding-right: 20px">Login</a>
-        <a href="#" style="padding-right: 20px">Register</a>
-    </div>
-{% endif %}
 <div class="container-center-panel">
     <div class="input-group">
         <input type="text" class="form-control" placeholder="username, interest..." aria-describedby="basic-addon2">
