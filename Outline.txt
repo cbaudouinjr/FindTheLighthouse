@@ -5,7 +5,7 @@ work out any kinks still present in the data-organization side of the product.
 Please mark any changes in this document with a version change number and date below:
 
 *****************************
-Version: 1.0 9/16/17 12:16 AM
+Version: 1.1 9/16/17 03:18 AM
 *****************************
 
 Referred to in this document as "The Lighthouse", FindTheLighthouse is a web-based
@@ -56,3 +56,38 @@ that can include a username, an Event name, or a tag / series of tags, two butto
 the User to either of the aforementioned pages: Find Your People and Find Your Meetups (WT).
 Below that is a Happening Now section that lists, in alternating pattern, the five most
 recently created User accounts and Events.
+
+
+=================================================
+*********    A Discussion on Models    **********
+=================================================
+The following section discusses the reasoning driving the design of the implementation
+of the entities involved in The Lighthouse product.
+
+
+USER: The default Django User class has been extended (from its Abstract form) in order
+to provide additional functionality. Namely, a ManyToMany relation has been added to
+connect a User with their chosen Interests (covered below). Access to the User class
+must now be achieved through the importation of settings.py and accessing the defined
+field "AUTH_USER_MODEL".
+
+EVENT: As Django creates an artificial id Primary Key by default on every model if one
+is not explicitly set, no id field was created for an Event. The title of an event was
+capped at 75 characters in order to prevent Users from being too wordy -- most of the
+important information can be covered in the other fields. The description field is
+similarly cut off, currently at 1000 characters. That number is subject to change if
+necessary. Description is stored as a textfield rather than a charfield (for display
+and form purposes), which means that this max_length is not actually enforced by the
+backend of Django, nor the database itself. If this becomes a problem a change to a
+charfield will be considered. Contains a ManyToMany relation to store what interests
+are "tagged" for the event.
+
+INTEREST: Only contains a single field, overriding the default Primary Key with a
+charfield containing the 'name' of the interest. This is useful for reference from
+both Users and Events, each of which has a ManyToMany relation to the Interest model.
+
+ATTENDEE: A special model created specifically to speed up indexing and searching for
+which Users have indicated they will be / are attending an event. Contains a reference
+(via a OneToOneField) to a User and an Event. Django does not currently support compound
+Primary Keys, so instead we allow Django to create an artificial id Primary Key for each
+Attendee. It is an imperfect solution, but one that seems best at the moment of writing.
