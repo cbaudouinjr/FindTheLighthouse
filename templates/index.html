@@ -39,7 +39,7 @@
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'profile' username=request.user.username %}">Profile</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Preferences</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'preferences' username=request.user.username %}">Preferences</a></li>
                 <li role="separator" class="divider"></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url "logout" %}">Logout</a></li>
             </ul>
