@@ -7,6 +7,7 @@ def index(request):
 
     return render(request, 'index.html', context={"user": request.user})
 
+
 # View for "Find Your People"
 def people(request):
     return render(request, 'people.html')
@@ -16,9 +17,11 @@ def people(request):
 def meetup(request):
     return render(request, 'meetup.html')
 
+
 # Function for handling logout requests
 def login_page(request):
     return render(request, "login.html")
+
 
 # Function for handling logout requests
 def logout_user(request):

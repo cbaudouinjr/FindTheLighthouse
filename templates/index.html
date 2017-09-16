@@ -38,7 +38,7 @@
                 <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Profile</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'profile' username=request.user.username %}">Profile</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Preferences</a></li>
                 <li role="separator" class="divider"></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url "logout" %}">Logout</a></li>
