@@ -23,10 +23,7 @@ class School(models.Model):
 class ExtUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, null=False)
     interests = models.ManyToManyField(Interest)
-    school = models.OneToOneField(School, null=True)
-
-    def __str__(self):
-        return self.user.username
+    school = models.ForeignKey(School, null=True)
 
 
 # Model for an event entity
@@ -36,9 +33,6 @@ class Event(models.Model):
     endTime = models.DateTimeField
     description = models.TextField(max_length=1000)
     interests = models.ManyToManyField(Interest)
-
-    def __str__(self):
-        return self.title
 
 
 # Create a separated table for searching for attendees of events
