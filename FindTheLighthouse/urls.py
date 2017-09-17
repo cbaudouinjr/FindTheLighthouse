@@ -16,19 +16,20 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from FindTheLighthouse.views import *
+import FindTheLighthouse.views as Lighthouse_views
 
 urlpatterns = [
     # Main landing page for site
-    url(r'^$', index, name='index'),
+    url(r'^$', Lighthouse_views.index, name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('accounts.urls')),
 
     # Page dedicated to finding people
-    url(r'^people', people, name='people'),
+    url(r'^people', Lighthouse_views.people, name='people'),
 
     # Page dedicated to finding events
-    url(r'^meetup', meetup, name='meetup'),
+    url(r'^meetup', Lighthouse_views.meetup, name='meetup'),
 
     # Link for logout process
-    url(r'^logout', logout_user, name='logout'),
+    url(r'^logout', Lighthouse_views.logout_user, name='logout'),
 ]

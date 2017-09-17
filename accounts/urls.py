@@ -4,6 +4,7 @@ from FindTheLighthouse import views as lighthouse_views
 from accounts import views as accounts_views
 from django.contrib.auth import views as auth_views
 
+
 urlpatterns = [
     # Main landing page for the site
     url(r'^$', lighthouse_views.index, name='index'),
