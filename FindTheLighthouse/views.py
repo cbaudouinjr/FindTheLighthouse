@@ -19,11 +19,6 @@ def meetup(request):
 
 
 # Function for handling logout requests
-def login_page(request):
-    return render(request, "login.html")
-
-
-# Function for handling logout requests
 def logout_user(request):
     logout(request)
     return index(request)

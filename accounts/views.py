@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from accounts.models import ExtUser, Interest
 from django.contrib.auth.models import User
-from forms import RegistrationForm
+from django.contrib.auth import authenticate, login
+from accounts.forms import RegistrationForm
 
 
 # A new User registers with the site
@@ -29,7 +29,8 @@ def register(request):
                 parseInterests(ext_new, interests)
 
             ext_new.save()
-            # log in user and redirect to home page
+
+            login(request, new_user)
             return redirect('index')
 
     else:
@@ -55,6 +56,20 @@ def parseInterests(ext_user, interests):
             new_interest.save()
 
             ext_user.interests.add(new_interest)
+
+
+# View for logging in to site
+def login_page(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+
+    if user is not None:
+        login(request, user)
+        redirect('index')
+    else:
+        # Return/display login error
+        pass
 
 
 # View for any profile (NOT editing)

@@ -23,5 +23,3 @@ class RegistrationForm(UserCreationForm):
 
         if pass1 != pass2:
             raise forms.ValidationError("Passwords do not match.")
-
-
