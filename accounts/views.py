@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from accounts.models import ExtUser, School
+from accounts.models import ExtUser, Interest
 from django.contrib.auth.models import User
 from forms import RegistrationForm
 
@@ -45,7 +45,16 @@ def parseInterests(ext_user, interests):
     :param interests: Comma separated list of interests
     :return: void
     """
-    pass
+    interest_list = interests.split(",")
+    for item in interest_list:
+        data = item.strip().lower()
+        if Interest.objects.filter(name=data).exists():
+            ext_user.interests.add(Interest.objects.get(name=data))
+        else:
+            new_interest = Interest.objects.create(name=data)
+            new_interest.save()
+
+            ext_user.interests.add(new_interest)
 
 
 # View for any profile (NOT editing)
