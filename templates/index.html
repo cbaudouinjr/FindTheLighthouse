@@ -31,7 +31,6 @@
 <body>
 {% if user.is_authenticated %}
     <div class="navbar-form navbar-right">
-
         <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
                 {{ user.get_username }}
@@ -52,7 +51,7 @@
     </div>
 {% endif %}
 <div class="container-center-panel">
-    <div class="input-group">
+    <div class="input-group input-group-lg">
         <input type="text" class="form-control" placeholder="username, meetup, interest..." aria-describedby="basic-addon2">
         <span class="input-group-btn">
             <button class="btn btn-default" type="button">Search</button>

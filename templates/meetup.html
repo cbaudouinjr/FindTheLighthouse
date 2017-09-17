@@ -25,13 +25,21 @@
             padding-left: 10px;
             padding-top: 10px;
         }
+        .hr-custom{
+            padding-left: 400px;
+            padding-right: 400px;
+        }
+        .organize-btn{
+            padding-top: 10px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <div class="row">
         <div class="col-md-6">
             <div class="back-btn">
-                <a href="{% url "index" %}"><button id="people_home" type="button" class="btn btn-default btn-md title-button"><i class="glyphicon glyphicon-chevron-left"></i>Home</button></a>
+                <a href="javascript:history.back()"><button id="people_home" type="button" class="btn btn-default btn-md title-button"><i class="glyphicon glyphicon-chevron-left"></i>Home</button></a>
             </div>
         </div>
         <div class="col-md-6">
@@ -43,8 +51,8 @@
                             <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Profile</a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Preferences</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'profile' username=request.user.username %}">Profile</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'preferences' username=request.user.username %}">Preferences</a></li>
                             <li role="separator" class="divider"></li>
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url "logout" %}">Logout</a></li>
                         </ul>
@@ -59,16 +67,21 @@
         </div>
     </div>
 <div class="container-center-panel">
-    <div class="input-group">
+    <div class="input-group input-group-lg">
         <input type="text" class="form-control" placeholder="username, meetup, interest..." aria-describedby="basic-addon2">
         <span class="input-group-btn">
             <button class="btn btn-default" type="button">Search</button>
         </span>
     </div>
 </div>
-
+<h2 align="center" style="padding-top: 30px">Meetups</h2>
+    <div class="hr-custom">
+        <hr>
+    </div>
+    <div class="organize-btn">
+        <a href="#"><button id="people_home" type="button" class="btn btn-default btn-md title-button"><i class="glyphicon glyphicon-plus"></i> Organize</button></a>
+    </div>
 <div class="container">
-    <h4 align="center" style="padding-top: 50px">Meetups</h4>
             <div class="panel-formatting">
                 <div class="panel panel-default">
                     <div class="panel-heading">

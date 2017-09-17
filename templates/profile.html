@@ -1,10 +1,137 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta charset="UTF-8">
-    <title>Find the Lighthouse | Profile</title>
+    <title>Profile</title>
+    <style>
+        .container-center-panel{
+            padding-left: 150px;
+            padding-right: 150px;
+            padding-top: 50px;
+        }
+        .panel-formatting{
+            padding-top: 20px;
+            padding-right: 200px;
+            padding-left: 200px;
+        }
+        .btn{
+            color: #7FB8AB;
+            background-color: #666A73;
+        }
+        .back-btn{
+            padding-left: 10px;
+            padding-top: 10px;
+        }
+        .hr-custom{
+            padding-left: 400px;
+            padding-right: 400px;
+        }
+    </style>
 </head>
 <body>
-    <p>This is the Profile page for a user</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="back-btn">
+                <a href="javascript:history.back()"><button id="people_home" type="button" class="btn btn-default btn-md title-button"><i class="glyphicon glyphicon-chevron-left"></i>Back</button></a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            {% if host.is_authenticated %}
+                <div class="navbar-form navbar-right">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+                            {{ host.get_username }}
+                            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            {% if not is_self %}
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'profile' username=request.user.username %}">Profile</a></li>
+                            {% endif %}
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'preferences' username=request.user.username %}">Preferences</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url "logout" %}">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            {% else %}
+                <div class="navbar-form navbar-right">
+                    <a href="{% url "login_page" %}" style="padding-right: 20px">Login</a>
+                    <a href="#" style="padding-right: 20px">Register</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div style="text-align: center">
+        <h2>{{ user.user.get_username }}</h2>
+        <div class="hr-custom">
+            <hr>
+        </div>
+        <h5>{{ user.school }}</h5>
+        {% if is_self %}
+
+        {% else %}
+        <div style="padding-top: 30px">
+            <a href="#"><button id="people_home" type="button" class="btn btn-default btn-md title-button"><i class="glyphicon glyphicon-edit"></i> Message</button></a>
+        </div>
+        {% endif %}
+    </div>
+
+<div class="container">
+            <div class="panel-formatting">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {% if is_self %}
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h3 class="panel-title"><a href="#">Interests</a></h3>
+                                </div>
+                                <div class="col-sm-6" align="right">
+                                    <a href="#"><i class="glyphicon glyphicon-cog"></i></a>
+                                </div>
+                            </div>
+                        {% else %}
+                            <h3 class="panel-title"><a href="#">Interests</a></h3>
+                        {% endif %}
+                    </div>
+                    <div class="panel-body">
+                        <h5>--Interests go here!--</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-formatting">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {% if is_self %}
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h3 class="panel-title"><a href="#">{{ host.username }}'s Hosted Meetups</a></h3>
+                                </div>
+                                <div class="col-sm-6" align="right">
+                                    <a href="#"><i class="glyphicon glyphicon-plus"></i></a>
+                                </div>
+                            </div>
+                        {% else %}
+                            <h3 class="panel-title"><a href="#">Interests</a></h3>
+                        {% endif %}
+                    </div>
+                    <div class="panel-body">
+                        <h5>--Hosted Meetups go here!--</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-formatting">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><a href="#">{{ user.user.get_username }}'s Recent Meetups</a></h3>
+                    </div>
+                    <div class="panel-body">
+                        <h5>--Recent Meetups go here!--</h5>
+                    </div>
+                </div>
+            </div>
+    </div>
 </body>
 </html>
