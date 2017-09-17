@@ -11,7 +11,7 @@ class Interest(models.Model):
 
 
 class School(models.Model):
-    name = models.CharField(max_length=40, primary_key=True, default="None")
+    name = models.CharField(max_length=40, primary_key=True)
 
     def __str__(self):
         return self.name
@@ -23,7 +23,7 @@ class School(models.Model):
 class ExtUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, null=False)
     interests = models.ManyToManyField(Interest)
-    school = models.OneToOneField(School, null=True)
+    school = models.ForeignKey(School, null=True)
 
     def __str__(self):
         return self.user.username
