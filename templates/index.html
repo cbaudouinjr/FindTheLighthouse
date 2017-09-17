@@ -11,6 +11,7 @@
             padding-left: 150px;
             padding-right: 150px;
             padding-top: 100px;
+            padding-bottom: 30px;
         }
         .container-panel-buttons{
             alignment: center;
@@ -20,7 +21,7 @@
             width: 110px;
         }
         .panel-formatting{
-            padding-top: 30px;
+            padding-top: 15px;
         }
         .btn{
             color: #7FB8AB;
@@ -57,19 +58,15 @@
             <button class="btn btn-default" type="button">Search</button>
         </span>
     </div>
-    <div class="container-panel-buttons text-center">
-        <a href="{% url "people" %}"><button id="people" type="button" class="btn btn-default btn-lg title-button">People</button></a>
-        <a href="{% url "meetup" %}"><button id="meetups" type="button" class="btn btn-default btn-lg title-button">Meetups</button></a>
-    </div>
 </div>
 
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
-            <h4 align="center">Who's New?</h4>
+            <a href="{% url "people" %}"><h3 align="center">Find your People<span class="glyphicon glyphicon-menu-right" style="font-size: 18px"></span> </h3></a>
         </div>
         <div class="col-sm-6">
-            <h4 align="center">Happening Now</h4>
+            <a href="{% url "meetup" %}"><h3 align="center">Find your Meetups<span class="glyphicon glyphicon-menu-right" style="font-size: 18px"></span></h3></a>
         </div>
     </div>
     <div class="row">
