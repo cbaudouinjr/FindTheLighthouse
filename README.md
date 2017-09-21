@@ -1,5 +1,5 @@
 # Find The Lighthouse
-A website to help find your community
+A website designed to help students who have trouble making friends, make friends.
 
 
 <h1>Known Issues</h1>
