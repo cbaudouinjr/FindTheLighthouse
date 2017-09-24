@@ -6,8 +6,6 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
-    # Main landing page for the site
-    url(r'^$', lighthouse_views.index, name='index'),
     # Registration page for new Users
     url(r'^register/', accounts_views.register, name='register'),
     # Login page for User

@@ -30,13 +30,13 @@ def register(request):
                 parseInterests(ext_new, interests)
 
             ext_new.save()
-            # log in user and redirect to home page
+            login(request, new_user)
             return redirect('index')
 
     else:
         form = RegistrationForm()
 
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'registration/register.html', {'form': form})
 
 
 # Parse the comma-separated list of interests from the registration form
