@@ -6,12 +6,65 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: 1s;
+        }
+        .tooltip .tooltiptext:hover {
+            opacity: 1;
+            visibility: visible;
+        }
+        .tooltip .tooltiptext:after {
+            content: " ";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: black transparent transparent transparent;
+        }
+    </style>
 </head>
 <body>
+<div class="container-fluid" align="center">
+    <h3>To register, we just need some basic information.</h3>
+        <br>
     <form action="register.html" method="post">
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit" />
+        {% for field in form %}
+            <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.help_text %}
+                <span class="glyphicon glyphicon-question-sign"
+                      title="{{ field.help_text }}" data-toggle="tooltip"></span>
+            {% endif %}
+            </div>
+        {% endfor %}
     </form>
+</div>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip({delay: 1000,
+        container:".glyphicon-question-sign"});
+});
+</script>
 </body>
 </html>
