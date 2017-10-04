@@ -1,7 +1,7 @@
 # Find The Lighthouse
 A website designed to help students who have trouble making friends, make friends.
 
-<h3> Try it out! Go to: http://13.66.55.120 in your browser </h3>
+<h5> Try it out! Go to: http://13.66.55.120 in your browser </h5>
 
 
 <h1>Known Issues</h1>
